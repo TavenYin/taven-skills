@@ -64,8 +64,7 @@ def write_board(board, operation, payload, expected_sha256=None, lock_timeout=5)
     if operation in {"patch", "save"} and not expected_sha256:
         raise ValueError("patch and save require expected_sha256 from read")
     # Validate encoding before creating any filesystem artifacts.
-    if isinstance(payload, str):
-        payload.encode("utf-8")
+    payload.encode("utf-8")
     if operation == "init":
         board.parent.mkdir(parents=True, exist_ok=True)
     lock_path = board.parent / ".blackboard.lock"
